@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/auth";
+import './Deconnexion.css';
+
 
 const Deconnexion = () => {
     const { logout } = useContext(AuthContext);

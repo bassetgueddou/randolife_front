@@ -1,0 +1,23 @@
+.ListeActivites-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.ListeActivites-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.ListeActivites-card {
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 import axios from "axios";
+import './Inscription.css';
+
 
 const Inscription = () => {
     const [email, setEmail] = useState("");
