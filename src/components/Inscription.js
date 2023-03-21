@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../context/auth";
 import axios from "axios";
 import './Inscription.css';
@@ -12,7 +12,7 @@ const Inscription = () => {
     const [errorMessage, setErrorMessage] = useState("");
 
     const { login } = useContext(AuthContext);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,7 +26,7 @@ const Inscription = () => {
 
             if (response.status === 200) {
                 login(response.data.token);
-                history.push("/");
+                navigate("/");
             }
         } catch (error) {
             setErrorMessage("Erreur lors de l'inscription.");

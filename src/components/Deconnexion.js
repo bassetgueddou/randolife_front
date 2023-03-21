@@ -1,17 +1,17 @@
 import React, { useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../context/auth";
 import './Deconnexion.css';
 
 
 const Deconnexion = () => {
     const { logout } = useContext(AuthContext);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         logout();
-        history.push("/");
-    }, [logout, history]);
+        navigate("/");
+    }, [logout, navigate]);
 
     return <div>Déconnexion en cours...</div>;
 };
