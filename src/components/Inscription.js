@@ -1,77 +1,67 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import "frontend/src/App.css"
-
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "../context/auth";
+import axios from "axios";
 
 const Inscription = () => {
-    const [formData, setFormData] = useState({
-        username: '',
-        password1: '',
-        password2: '',
-        email: '',
-    });
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+    const { login } = useContext(AuthContext);
+    const history = useHistory();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
-            const response = await axios.post(
-                'http://localhost:8000/api/v1/utilisateurs/inscription/',
-                formData
-            );
-            console.log(response.data);
+            const response = await axios.post("https://your-backend-url.com/register", {
+                email,
+                password,
+                name,
+            });
+
+            if (response.status === 200) {
+                login(response.data.token);
+                history.push("/");
+            }
         } catch (error) {
-            console.error(error.response.data);
+            setErrorMessage("Erreur lors de l'inscription.");
         }
     };
 
     return (
         <div>
-            <h2>Inscription</h2>
+            <h1>Inscription</h1>
             <form onSubmit={handleSubmit}>
-                <div className="form-group"></div>
-                <label htmlFor="username">Nom d'utilisateur:</label>
-                <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                />
-                <br />
-                <label htmlFor="email">Email:</label>
+                <label htmlFor="email">Email :</label>
                 <input
                     type="email"
-                    name="email"
                     id="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
                 />
-                <br />
-                <label htmlFor="password1">Mot de passe:</label>
+                <label htmlFor="password">Mot de passe :</label>
                 <input
                     type="password"
-                    name="password1"
-                    id="password1"
-                    value={formData.password1}
-                    onChange={handleChange}
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
                 />
-                <br />
-                <label htmlFor="password2">Confirmer le mot de passe:</label>
+                <label htmlFor="name">Nom :</label>
                 <input
-                    type="password"
-                    name="password2"
-                    id="password2"
-                    value={formData.password2}
-                    onChange={handleChange}
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
                 />
-                <br />
                 <button type="submit">S'inscrire</button>
-
             </form>
+            {errorMessage && <p>{errorMessage}</p>}
         </div>
     );
 };
