@@ -1,57 +1,47 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-const Connexion = (props) => {
-    const { updateUser } = props;
-    const [formData, setFormData] = useState({
-        username: '',
-        password: '',
-    });
+function Connexion(props) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post(
-                'http://localhost:8000/api/v1/utilisateurs/connexion/',
-                formData
-            );
-            console.log(response.data);
-            updateUser(response.data);
-        } catch (error) {
-            console.error(error.response.data);
-        }
+        // Ajoutez ici la logique de connexion
+        console.log("Connexion en cours avec les identifiants :", email, password);
+        props.navigateToScreen("listeActivites");
     };
 
     return (
         <div>
             <h2>Connexion</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Nom d'utilisateur:</label>
+                <label htmlFor="email">Email :</label>
                 <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    value={formData.username}
-                    onChange={handleChange}
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
                 />
                 <br />
-                <label htmlFor="password">Mot de passe:</label>
+                <label htmlFor="password">Mot de passe :</label>
                 <input
                     type="password"
-                    name="password"
                     id="password"
-                    value={formData.password}
-                    onChange={handleChange}
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
                 />
                 <br />
                 <button type="submit">Se connecter</button>
             </form>
+            <button onClick={() => props.navigateToScreen("inscription")}>
+                Pas encore inscrit ? Inscrivez-vous !
+            </button>
         </div>
     );
-};
+}
 
 export default Connexion;
