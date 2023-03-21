@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "frontend/src/App.css"
+
 
 const Inscription = () => {
     const [formData, setFormData] = useState({
@@ -30,6 +32,7 @@ const Inscription = () => {
         <div>
             <h2>Inscription</h2>
             <form onSubmit={handleSubmit}>
+                <div className="form-group"></div>
                 <label htmlFor="username">Nom d'utilisateur:</label>
                 <input
                     type="text"
