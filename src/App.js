@@ -1,37 +1,44 @@
-import React, { useState } from 'react';
-import UserProfile from './components/UserProfile';
-import Inscription from './components/Inscription';
-import Connexion from './components/Connexion';
-import Deconnexion from './components/Deconnexion';
+import React, { useState } from "react";
+import "./App.css";
+import Connexion from "./components/Connexion";
+import Inscription from "./components/Inscription";
+import CreerActivite from "./components/CreerActivite";
+import ListeActivites from "./components/ListeActivites";
+import UserProfile from "./components/UserProfile";
+import Deconnexion from "./components/Deconnexion";
 
 function App() {
-  // Créez un état pour stocker les informations de l'utilisateur
-  const [user, setUser] = useState(null);
+  const [currentScreen, setCurrentScreen] = useState("connexion");
 
-  // Cette fonction met à jour les informations de l'utilisateur
-  const updateUser = (userData) => {
-    setUser(userData);
+  const navigateToScreen = (screenName) => {
+    setCurrentScreen(screenName);
   };
 
-  // Cette fonction déconnecte l'utilisateur
-  const logout = () => {
-    setUser(null);
+  const renderCurrentScreen = () => {
+    switch (currentScreen) {
+      case "connexion":
+        return <Connexion navigateToScreen={navigateToScreen} />;
+      case "inscription":
+        return <Inscription navigateToScreen={navigateToScreen} />;
+      case "creerActivite":
+        return <CreerActivite navigateToScreen={navigateToScreen} />;
+      case "listeActivites":
+        return <ListeActivites navigateToScreen={navigateToScreen} />;
+      case "userProfile":
+        return <UserProfile navigateToScreen={navigateToScreen} />;
+      case "deconnexion":
+        return <Deconnexion navigateToScreen={navigateToScreen} />;
+      default:
+        return <Connexion navigateToScreen={navigateToScreen} />;
+    }
   };
 
   return (
     <div className="App">
-      <h1>Randolife</h1>
-      {user ? (
-        <>
-          <UserProfile user={user} />
-          <Deconnexion logout={logout} />
-        </>
-      ) : (
-        <>
-          <Inscription updateUser={updateUser} />
-          <Connexion updateUser={updateUser} />
-        </>
-      )}
+      <header className="App-header">
+        <h1>RandoLife</h1>
+      </header>
+      <main>{renderCurrentScreen()}</main>
     </div>
   );
 }
