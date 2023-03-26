@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Pagination from "./Pagination";
-import './ListeActivites.css';
+import './style/_ListeActivites.css';
 
+const BASE_URL = "http://localhost:8000";
 
 const ListeActivites = () => {
     const [activities, setActivities] = useState([]);
@@ -14,8 +14,9 @@ const ListeActivites = () => {
 
     useEffect(() => {
         const fetchActivities = async () => {
-            const res = await axios.get("https://api.example.com/activities");
-            setActivities(res.data);
+            const res = await fetch(`${BASE_URL}/api/activities`);
+            const data = await res.json();
+            setActivities(data);
         };
         fetchActivities();
     }, []);
@@ -29,12 +30,12 @@ const ListeActivites = () => {
     }, [search, activities]);
 
     const joinActivity = async (id) => {
-        await axios.put(`https://api.example.com/activities/join/${id}`);
+        await fetch(`${BASE_URL}/api/activities/join/${id}`, { method: 'PUT' });
         window.location.reload();
     };
 
     const leaveActivity = async (id) => {
-        await axios.put(`https://api.example.com/activities/leave/${id}`);
+        await fetch(`${BASE_URL}/api/activities/leave/${id}`, { method: 'PUT' });
         window.location.reload();
     };
 

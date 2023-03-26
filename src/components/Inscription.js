@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../context/auth";
 import axios from "axios";
-import './Inscription.css';
+import './style/_Inscription.css';
 
 
 const Inscription = () => {

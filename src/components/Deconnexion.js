@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../context/auth";
-import './Deconnexion.css';
+import './style/_Deconnexion.css';
 
 
 const Deconnexion = () => {

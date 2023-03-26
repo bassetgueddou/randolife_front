@@ -1,27 +1,69 @@
+/* Import de Bootstrap */
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+
+/* Utilisation de classes Bootstrap pour styliser les éléments de la page */
 .App {
+  font-family: 'Roboto', sans-serif;
+}
+
+.jumbotron {
+  background-color: #F2F2F2;
+  margin-bottom: 0;
+}
+
+.jumbotron h1 {
+  font-size: 3rem;
+  font-weight: bold;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  gap: 2rem;
+  margin-bottom: 2rem;
+  color: #0077FF;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.jumbotron p {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #7C8A97;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-.App-link {
-  color: #61dafb;
+ul li {
+  font-size: 1.5rem;
+  color: #7C8A97;
+}
+
+.btn-primary {
+  background-color: #0077FF;
+  border-color: #0077FF;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #005FCC;
+  border-color: #005FCC;
+}
+
+.btn-secondary {
+  background-color: #F2F2F2;
+  border-color: #F2F2F2;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #E6E6E6;
+  border-color: #E6E6E6;
 }
